@@ -64,7 +64,7 @@ function App() {
           <div className='App'>
             <Routes>
               
-              <Route element={<MainPage courseAndVal={courseAndVal} valutesNameList={[<MenuItem key={"RUB"} value={"RUB"}>{"RUB"}</MenuItem>,<MenuItem key={"UER"}value={"UER"}>{"EUR"}</MenuItem>,<MenuItem key={"USD"}value={"USD"}>{"USD"}</MenuItem>]}> </MainPage>}path={"/mainPage"}></Route>
+              <Route element={<MainPage courseAndVal={courseAndVal} valutesNameList={valutesNameList}></MainPage>}path={"/mainPage"}></Route>
                
               <Route element={<MainPage courseAndVal={courseAndVal} valutesNameList={valutesNameList}></MainPage>}path={"/"}></Route>
   
