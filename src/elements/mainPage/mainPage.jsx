@@ -161,15 +161,18 @@ function MainPage(props) {
     
     useEffect(()=>{
     if(localStorage.baseValute=="undefined" || localStorage.baseValute==undefined){ 
-        console.log("FEDFDE")
+       
          if(count<2){
          count+=1;
          setOpen(true);
         }
 
     }else{
+        
          setBaseValute(localStorage.baseValute)
-         setValute2(baseValute);
+        console.log(Valute2)
+         if(Valute2==''){
+         setValute2(baseValute);}
     }})
 
     return (
