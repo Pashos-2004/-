@@ -160,6 +160,10 @@ function MainPage(props) {
     }
     
     useEffect(()=>{
+        
+    if(props.isBadConnection==true){
+        alert("Сервис недоступен, проверьте подключение")
+    }
     if(localStorage.baseValute=="undefined" || localStorage.baseValute==undefined){ 
        
          if(count<2){

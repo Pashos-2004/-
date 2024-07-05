@@ -10,9 +10,11 @@ var valutesNameList=[];
 
 var temp=0;
 var temp2=0;
+
 var courseAndVal = new Map();
 function App() {
    const [valuteInfo,setValuteInfo] = React.useState([])
+   const [isBadConnection,setIsBadConnection]=React.useState(false)
    React.useEffect(()=>{
     fetch('https://www.cbr-xml-daily.ru/daily.xml')
     .then(res => res.arrayBuffer()) 
@@ -30,8 +32,8 @@ function App() {
           if(decodedMessage[i]===">"){
               count+=1;
           }
-      }
-  
+        }
+        
       const parser = new DOMParser();
       
       const xmlData = parser.parseFromString(xmlText, "text/xml");
@@ -43,6 +45,11 @@ function App() {
       //   temp=valuteInfo[i].querySelector("CharCode").textContent;
       //   valutesNameList.push(<MenuItem key={temp} value={temp}>{temp}</MenuItem>)
       // }
+      }).catch((info)=>{
+        console.log("Ошибка запроса")
+        console.log(info)
+        setIsBadConnection(true)  
+        
       })
    
       //console.log(valuteInfo)
@@ -56,7 +63,23 @@ function App() {
       courseAndVal.set(temp,temp2)
     }
     
+//     if(isBadConnection){
+//       return(
+// <BrowserRouter>
+      
+//       <div className='App'>
+//         <Routes>
+          
+//           <Route element={<h1>Сервис не доступен, проверьте соединение</h1>}path={"/mainPage"}></Route>
+           
+//           <Route element={<h1>Сервис не доступен, проверьте соединение</h1>}path={"/"}></Route>
 
+
+//         </Routes>
+//       </div>
+//     </BrowserRouter>
+//       );
+//     }else{
     return ( 
       
       <BrowserRouter>
@@ -64,16 +87,15 @@ function App() {
           <div className='App'>
             <Routes>
               
-              <Route element={<MainPage courseAndVal={courseAndVal} valutesNameList={valutesNameList}></MainPage>}path={"/mainPage"}></Route>
+              <Route element={<MainPage isBadConnection={isBadConnection} courseAndVal={courseAndVal} valutesNameList={valutesNameList}></MainPage>}path={"/mainPage"}></Route>
                
-              <Route element={<MainPage courseAndVal={courseAndVal} valutesNameList={valutesNameList}></MainPage>}path={"/"}></Route>
+              <Route element={<MainPage isBadConnection={isBadConnection} courseAndVal={courseAndVal} valutesNameList={valutesNameList}></MainPage>}path={"/"}></Route>
   
   
             </Routes>
           </div>
         </BrowserRouter>
     );
-
-}
+  }
 
 export default App;
