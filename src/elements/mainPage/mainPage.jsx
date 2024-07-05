@@ -131,6 +131,26 @@ function MainPage(props) {
         buff = Valute1;
         setValute1(Valute2)
         setValute2(buff);
+        
+        let res = parseFloat(Input1)
+        let answer = document.getElementById("AnswerLabel");
+        if(!isNaN(res) && Valute1!='' && Valute2!=''){
+            if(Valute1!=Valute2){
+                if(Valute2=="RUB"){
+                    res*=props.courseAndVal.get(Valute1);
+                }else if(Valute1=="RUB"){
+                    res/=props.courseAndVal.get(Valute2);
+                }else{
+                    res*=props.courseAndVal.get(Valute1);
+                    res/=props.courseAndVal.get(Valute2);
+                }
+            }
+            
+            answer.textContent="Итого: "+res;
+        }else{
+            answer.textContent="Итого: "
+        }
+
 
     };
     const [open,setOpen] = useState(false);
